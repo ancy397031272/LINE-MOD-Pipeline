@@ -18,7 +18,7 @@ macro (add_executable _name)
 	_add_executable(${ARGV})
 	# SDL2
 	find_package(SDL2 REQUIRED)
-	target_link_libraries(${_name}  ${SDL2_LIBRARY})
+	target_link_libraries(${_name}  ${SDL2_LIBRARIES})
 	target_include_directories(${_name}  PUBLIC ${SDL2_INCLUDE_DIR})
 
 	# GLM
@@ -33,6 +33,9 @@ macro (add_executable _name)
 	target_include_directories(${_name}  PUBLIC ${ASSIMP_INCLUDE_DIR})
 
 	# OpenGL
+	if (POLICY CMP0072)
+		set(OpenGL_GL_PREFERENCE LEGACY)
+	endif()
 	find_package(OpenGL REQUIRED)
 	target_link_libraries(${_name}  ${OPENGL_gl_LIBRARY})
 	target_include_directories(${_name}  PUBLIC ${OPENGL_INCLUDE_DIR})

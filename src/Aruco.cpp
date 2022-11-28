@@ -87,7 +87,7 @@ void Aruco::detectBoard()
 			cv::Rodrigues(rotMat, rvec);
 
 			if (valid > 0)
-				cv::aruco::drawAxis(imageCopy, cameraMatrix, distCoeffs, rvec, tvec, 100);
+				cv::drawFrameAxes(imageCopy, cameraMatrix, distCoeffs, rvec, tvec, 100);
 		}
 
 		cv::imshow("Camera", imageCopy);
